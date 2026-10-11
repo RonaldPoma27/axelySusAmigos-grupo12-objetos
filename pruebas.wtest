@@ -1,0 +1,28 @@
+import elTorneo.*
+
+describe"pelea potente"{
+    test "pelea amv- goku vs vegeta"{
+        const trajeGoku= new trajeComun(porcentajeDeDanio=0)
+        const trajeVegeta= new trajeComun(porcentajeDeDanio=0)
+        const goku =  new Guerrero(potencialOfensivo=100,energiaOriginal=5000,energia=5000,traje=trajeGoku)
+        const vegeta = new Guerrero(potencialOfensivo = 100,energiaOriginal = 5000,energia = 5000,traje=trajeVegeta)
+
+        goku.atacar(vegeta) 
+
+        assert.equals(4990, vegeta.energia()) 
+        assert.equals(1, vegeta.experiencia())
+
+
+
+    }
+}
+
+/*
+Cuando un guerrero ataca al otro, lo hace con todo su potencial ofensivo. 
+Tras el ataque, la energía del guerrero atacado disminuye en un valor igual al 
+10% del potencial ofensivo del atacante.  Es decir: Si Goku tiene un potencial 
+ofensivo de 100 puntos y ataca a Vegeta, que tiene un nivel de energía de 5000, 
+tras el ataque, el nivel de energía de Vegeta será de 4990. Además, al ser atacado,
+un guerrero aumenta su experiencia en un punto.
+
+*/
