@@ -94,26 +94,3 @@ class Pieza {
   }
 }
 
-
-/*
-Finalmente se descubre que el problema es que un traje entero podía llegar a ser 
-muy caro, por lo que se decide introducir un nuevo tipo de trajes:
-
-Modularizados: estos trajes están conformados por un conjunto de piezas. Cada 
-pieza tiene un porcentaje de resistencia y un valor de desgaste, y se la considera 
-"gastada" cuando tiene un desgaste igual o mayor a 20 unidades. 
-
-Al recibir un ataque, el daño disminuye en una cantidad de unidades igual a la 
-sumatoria de las resistencias de cada pieza que no esté gastada. Un traje 
-Modularizado está gastado si todas sus piezas están gastadas. 
-Los trajes modularizados aumentan la experiencia en base al porcentaje de piezas 
-que tenga que no estén gastadas, ejemplos:
-Tengo 10 piezas, y tengo 0 gastadas, entonces la experiencia es aumentada al 100% 
-[1 punto aumenta].
-Tengo 10 piezas, y tengo 5 gastadas, entonces la experiencia es aumentada en un 
-50% [0.5 punto aumenta].
-Tengo 10 piezas, y tengo 2 gastadas, entonces la experiencia es aumentada en un 
-80% [0.8 punto aumenta].
-
-
-*/
