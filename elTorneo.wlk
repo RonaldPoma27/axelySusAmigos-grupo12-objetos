@@ -12,7 +12,7 @@ class Guerrero {
   method recibirAtaque(potencialDelAtacante) {
     traje.usar()
     const danioBase = potencialDelAtacante * 0.1
-    const danioFinal = traje.danioRecibido(danioBase)
+    const danioFinal = traje.danioRecibido(danioBase,potencialDelAtacante)
     energia = (energia - danioFinal).max(0)
     experiencia += traje.experienciaPorAtaque()
   }
@@ -28,13 +28,13 @@ class trajeComun {
   var porcentajeDeDanio=0
   var experiencia = 1
   var desgaste = 0
-  method danioRecibido(danioBase){
+  method danioRecibido(danioBase, potencialDelAtacante){
 
     if(self.trajeGastado()){
       return danioBase
     }
     else{
-      return danioBase-(danioBase*porcentajeDeDanio)
+      return danioBase-(potencialDelAtacante*porcentajeDeDanio)
     }
 
   }
@@ -51,7 +51,7 @@ class trajeComun {
 
 class trajeDeEntrenamiento {
   var desgaste=0
-  method danioRecibido(danioBase)= danioBase
+  method danioRecibido(danioBase,potencialDelAtacante)= danioBase
 
   method experienciaPorAtaque() = 2
 
@@ -65,7 +65,7 @@ class trajeDeEntrenamiento {
 
 class trajeModularizados {
 
-  const piezas = []
+  const property piezas = []
 
   method piezasSinGastar()= piezas.filter({pieza=>!pieza.gastada()})
 
@@ -76,7 +76,7 @@ class trajeModularizados {
 
   method experienciaPorAtaque() = self.piezasSinGastar().size()/piezas.size()
   
-  method danioRecibido(danioBase) = (danioBase - self.resistenciaTotal()).max(0)
+  method danioRecibido(danioBase,potencialDelAtacante) = (danioBase - self.resistenciaTotal()).max(0)
   
   method usar() = piezas.forEach({pieza => pieza.usar()})
 
@@ -93,4 +93,5 @@ class Pieza {
     desgaste+=5
   }
 }
+
 
