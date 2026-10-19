@@ -129,10 +129,9 @@ class Pieza {
 
 // ============================================================
 //  EJERCICIO 5: TORNEO
-//  El torneo tiene una modalidad que decide como se eligen
-//  los participantes. Cada modalidad es un objeto distinto que
-//  entiende seleccionar(guerreros, cupo), asi se pueden
-//  intercambiar sin cambiar el torneo (polimorfismo).
+//  El torneo tiene una modalidad y le delega la seleccion.
+//  Cada modalidad es un objeto que entiende seleccionar(guerreros, cupo),
+//  por eso son polimorficas y se pueden intercambiar.
 // ============================================================
 
 class Torneo {
@@ -155,17 +154,7 @@ object funny {
     guerreros.sortedBy({a, b => a.cantidadDePiezas() > b.cantidadDePiezas()}).take(cupo)
 }
 
-// Surprise: 16 al azar, sin repetir
-// (va sacando uno al azar de los disponibles hasta llenar el cupo)
+// Surprise: 16 al azar (mezcla la lista y se queda con los primeros)
 object surprise {
-  method seleccionar(guerreros, cupo) {
-    const disponibles = guerreros.copy()
-    const elegidos = []
-    guerreros.size().min(cupo).times({ i =>
-      const elegido = disponibles.anyOne()
-      elegidos.add(elegido)
-      disponibles.remove(elegido)
-    })
-    return elegidos
-  }
+  method seleccionar(guerreros, cupo) = guerreros.randomized().take(cupo)
 }
