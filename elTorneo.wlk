@@ -1,7 +1,7 @@
 class Guerrero {
-  const property potencialOfensivo=0
-  const property energiaOriginal=0
-  var property energia = 0
+  const property potencialOfensivo
+  const property energiaOriginal
+  var property energia 
   var property experiencia = 0
   var property traje
 
@@ -20,6 +20,9 @@ class Guerrero {
   method comerSemilla() {
     energia = energiaOriginal
   }
+
+  //ej5
+  method cantidadDePiezas() = traje.cantidadDePiezas()
 }
 
 
@@ -47,6 +50,11 @@ class trajeComun {
     desgaste+=5
   }
 
+  //ej5
+  method cantidadDePiezas() = 1
+  
+
+
 }
 
 class trajeDeEntrenamiento {
@@ -60,6 +68,9 @@ class trajeDeEntrenamiento {
   method usar() {
     desgaste+=5
   }
+
+  //ej5
+  method cantidadDePiezas() = 1
 
 }
 
@@ -80,6 +91,9 @@ class trajeModularizados {
   
   method usar() = piezas.forEach({pieza => pieza.usar()})
 
+  //ej5
+  method cantidadDePiezas() = piezas.size()
+
 }
 
 class Pieza {
@@ -95,3 +109,23 @@ class Pieza {
 }
 
 
+class Torneo {
+  var property modalidad   
+  const cupo = 16          
+  method seleccionar(guerreros) = modalidad.seleccionar(guerreros, cupo)
+}
+
+
+
+object powerIsBest {
+  method seleccionar(guerreros, cupo) = guerreros.sortedBy({guerrero1, guerrero2 => guerrero1.potencialOfensivo() > guerrero2.potencialOfensivo()}).take(cupo)
+}
+
+
+object funny {
+  method seleccionar(guerreros, cupo) = guerreros.sortedBy({guerrero1, guerrero2 => guerrero1.cantidadDePiezas() > guerrero2.cantidadDePiezas()}).take(cupo)
+}
+
+object surprise {
+  method seleccionar(guerreros, cupo) = guerreros.randomized().take(cupo)
+}
