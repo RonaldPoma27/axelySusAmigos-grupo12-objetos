@@ -125,26 +125,7 @@ object funny {
 object surprise {
   method seleccionar(guerreros, cupo) = guerreros.randomized().take(cupo)
 }
-class Torneo {
-  var property modalidad   
-  const cupo = 16          
-  method seleccionar(guerreros) = modalidad.seleccionar(guerreros, cupo)
-}
 
-
-
-object powerIsBest {
-  method seleccionar(guerreros, cupo) = guerreros.sortedBy({guerrero1, guerrero2 => guerrero1.potencialOfensivo() > guerrero2.potencialOfensivo()}).take(cupo)
-}
-
-
-object funny {
-  method seleccionar(guerreros, cupo) = guerreros.sortedBy({guerrero1, guerrero2 => guerrero1.cantidadDePiezas() > guerrero2.cantidadDePiezas()}).take(cupo)
-}
-
-object surprise {
-  method seleccionar(guerreros, cupo) = guerreros.randomized().take(cupo)
-}
 // object surprise {
 //   method seleccionar(guerreros, cupo) {
 //     const disponibles = guerreros.copy()
