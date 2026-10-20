@@ -2,8 +2,8 @@ import elTorneo.*
 
 describe"pelea potente"{
     test "pelea amv- goku vs vegeta"{
-        const trajeGoku= new trajeComun(porcentajeDeDanio=0)
-        const trajeVegeta= new trajeComun(porcentajeDeDanio=0)
+        const trajeGoku= new TrajeComun(porcentajeDeDanio=0)
+        const trajeVegeta= new TrajeComun(porcentajeDeDanio=0)
         const goku =  new Guerrero(potencialOfensivo=100,energiaOriginal=5000,energia=5000,traje=trajeGoku)
         const vegeta = new Guerrero(potencialOfensivo = 100,energiaOriginal = 5000,energia = 5000,traje=trajeVegeta)
 
@@ -17,8 +17,8 @@ describe"pelea potente"{
     }
 
     test "vegeta recibe un ataque con traje comun con proteccion al 0.03"{
-        const trajeGoku = new trajeComun(porcentajeDeDanio=0)
-        const trajeVegeta = new trajeComun(porcentajeDeDanio=0.03)
+        const trajeGoku = new TrajeComun(porcentajeDeDanio=0)
+        const trajeVegeta = new TrajeComun(porcentajeDeDanio=0.03)
 
         const goku =  new Guerrero(potencialOfensivo=100,energiaOriginal=5000,energia=5000,traje=trajeGoku)
         const vegeta = new Guerrero(potencialOfensivo = 100,energiaOriginal = 5000,energia = 5000,traje=trajeVegeta)
@@ -30,12 +30,13 @@ describe"pelea potente"{
 
     }
     test "vegeta recibe un ataque con traje modularizado de dos piezas" {
-        const goku = new Guerrero(potencialOfensivo = 100,energiaOriginal = 5000,energia = 5000,experiencia = 0,traje = new trajeDeEntrenamiento())
+        const goku = new Guerrero(potencialOfensivo = 100,energiaOriginal = 5000,energia = 5000,experiencia = 0,traje = new TrajeDeEntrenamiento())
         const pieza1 = new Pieza(porcentajeResistencia = 1)
         const pieza2 = new Pieza(porcentajeResistencia = 4)
-        const trajeVegeta = new trajeModularizados()
-        trajeVegeta.piezas().add(pieza1)
-        trajeVegeta.piezas().add(pieza2)
+        const trajeVegeta = creadorDeTrajes.crearTraje([pieza1, pieza2])
+        // const trajeVegeta = new TrajeModularizados()
+        // trajeVegeta.piezas().add(pieza1)
+        // trajeVegeta.piezas().add(pieza2)
 
         const vegeta = new Guerrero(potencialOfensivo = 100,energiaOriginal = 5000,energia = 5000,experiencia = 0,traje = trajeVegeta)
         goku.atacar(vegeta)
