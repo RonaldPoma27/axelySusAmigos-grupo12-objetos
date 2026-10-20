@@ -71,6 +71,16 @@ class TrajeDeEntrenamiento {
 
 }
 
+object creadorDeTrajes {
+  method crearTraje(piezas) {
+    if (piezas.isEmpty()) {
+      throw new Exception(message = "El traje debe tener al menos una pieza")
+    }
+
+    return new TrajeModularizados(piezas = piezas)
+  }
+}
+
 class TrajeModularizados {
 
   const property piezas = []
