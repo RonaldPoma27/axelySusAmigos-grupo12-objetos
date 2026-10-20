@@ -69,18 +69,6 @@ class TrajeDeEntrenamiento {
     desgaste+=5
   }
 
-  //ej5
-  method cantidadDePiezas() = 1
-
-}
-
-object creadorDeTrajes {
-  method crearTraje(piezas) {
-    if (piezas.isEmpty()) {
-      throw new Exception(message = "El traje debe tener al menos una pieza")
-    }
-    return new TrajeModularizados(piezas = piezas)
-  }
 }
 
 class TrajeModularizados {
@@ -117,6 +105,26 @@ class Pieza {
 }
 
 
+class Torneo {
+  var property modalidad   
+  const cupo = 16          
+  method seleccionar(guerreros) = modalidad.seleccionar(guerreros, cupo)
+}
+
+
+
+object powerIsBest {
+  method seleccionar(guerreros, cupo) = guerreros.sortedBy({guerrero1, guerrero2 => guerrero1.potencialOfensivo() > guerrero2.potencialOfensivo()}).take(cupo)
+}
+
+
+object funny {
+  method seleccionar(guerreros, cupo) = guerreros.sortedBy({guerrero1, guerrero2 => guerrero1.cantidadDePiezas() > guerrero2.cantidadDePiezas()}).take(cupo)
+}
+
+object surprise {
+  method seleccionar(guerreros, cupo) = guerreros.randomized().take(cupo)
+}
 class Torneo {
   var property modalidad   
   const cupo = 16          
